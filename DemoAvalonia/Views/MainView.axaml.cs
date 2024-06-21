@@ -1,48 +1,68 @@
 ﻿using Avalonia.Controls;
-using DemoAvalonia.Helpers;
-using Mapsui.Layers;
-using Mapsui.Nts;
-using Mapsui.Nts.Extensions;
-using Mapsui.Projections;
-using Mapsui.Styles;
-using NetTopologySuite.Algorithm;
-using NetTopologySuite.Geometries;
-using System.Collections.Generic;
-using System.Linq;
-
+using System.Net.Http;
+using System.Threading.Tasks;
+using System;
+using Avalonia.Threading;
+using Avalonia.Media;
 namespace DemoAvalonia.Views;
 
 public partial class MainView : UserControl
 {
-    List<Coordinate> _coordinates = [
-        new Coordinate(-67.750997, -20.227364),
-        new Coordinate(-64.526198, -18.952416),
-        new Coordinate(-64.526198, -20.946708),
-        new Coordinate(-61.740773, -20.970922)
-        ];
-
     public MainView()
     {
         InitializeComponent();
-        ShowMap();
     }
 
-    void ShowMap()
+
+    void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        //tile layer from openstreetmap
-        mapControl.Map?.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
-
-        Color color = MapsuiUtils.HexToMapsuiColor("#FF0856");
-
-        ICollection<IStyle> styles = [
-            MapsuiUtils.GetRoundedLineStyle(14, Color.Black),
-            MapsuiUtils.GetSquaredLineStyle(9, color, PenStyle.ShortDash),
-         ];
-
-        LineString lineString = MapsuiUtils.CreateLineString(_coordinates);
-        mapControl.Map?.Layers.Add(MapsuiUtils.CreateLinestringLayer(lineString, "Line Layer", styles));
-
+        Dispatcher.UIThread.Invoke(async () => {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync("https://jsonplaceholder.typicode.com/todos/1");
+                if (response.IsSuccessStatusCode)
+                {
+                    tbText.Foreground = new SolidColorBrush(Color.FromRgb(0,255,0));
+                    tbText.Text = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                tbText.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                tbText.Text = $"Request error: {e.Message}";
+            }
+            catch (Exception e)
+            {
+                tbText.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                tbText.Text = $"Error: {e.Message}";
+            }
+        });
     }
 
-
+    private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Dispatcher.UIThread.Invoke(async () => {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync("http://md5.jsontest.com/?text=hola");
+                if (response.IsSuccessStatusCode)
+                {
+                    tbText.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    tbText.Text = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                tbText.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                tbText.Text = $"Request error: {e.Message}";
+            }
+            catch (Exception e)
+            {
+                tbText.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                tbText.Text = $"Error: {e.Message}";
+            }
+        });
+    }
 }
