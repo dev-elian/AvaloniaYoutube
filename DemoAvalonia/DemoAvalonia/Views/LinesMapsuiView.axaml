@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:mapsui="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
-             x:Class="DemoAvalonia.Views.MapsuiView">
-	<mapsui:MapControl x:Name="mapControl"/>
+			 xmlns:vm ="clr-namespace:DemoAvalonia.ViewModels;assembly=DemoAvalonia"
+			 x:DataType="vm:LinesMapsuiViewModel"
+             x:Class="DemoAvalonia.Views.LinesMapsuiView">
+	<mapsui:MapControl x:Name="mapControl" Grid.Row="1"/>
 </UserControl>

@@ -8,5 +8,5 @@
         x:Class="DemoAvalonia.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="DemoAvalonia">
-        <views:MainView />
+	    <views:ZoomMapsuiView/>
 </Window>

@@ -4,22 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:DemoAvalonia.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 Width="500" Height="400"
              x:Class="DemoAvalonia.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Design.DataContext>
     <vm:MainViewModel />
   </Design.DataContext>
-	<StackPanel Margin="10">
-		<StackPanel Orientation="Horizontal" 
-					Spacing="20"
-					HorizontalAlignment="Center">
-			<Button Content="JSON HTTPS" Click="Button_Click"/>
-			<Button Content="JSON HTTP" Click="Button_Click_1"/>			
-		</StackPanel>
-	    <TextBlock 
-		    x:Name="tbText"	
-			Margin="20" HorizontalAlignment="Center"
-			TextWrapping="Wrap"
-		    Text="Texto aqui"/>
-	</StackPanel>
 </UserControl>

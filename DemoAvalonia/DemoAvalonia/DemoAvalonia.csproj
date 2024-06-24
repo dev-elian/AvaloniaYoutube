@@ -10,6 +10,14 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
+  
+  <ItemGroup>
+    <AvaloniaXaml Remove="Services\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
@@ -22,6 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <Compile Update="Views\LinesMapsuiView.axaml.cs">
+      <DependentUpon>LinesMapsuiView.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

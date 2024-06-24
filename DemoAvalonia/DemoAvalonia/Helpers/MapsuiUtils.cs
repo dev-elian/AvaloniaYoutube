@@ -1,8 +1,11 @@
-﻿using Mapsui.Layers;
+﻿using Mapsui;
+using Mapsui.Layers;
 using Mapsui.Nts;
 using Mapsui.Nts.Extensions;
 using Mapsui.Projections;
 using Mapsui.Styles;
+using Mapsui.Widgets;
+using Mapsui.Widgets.Zoom;
 using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
@@ -82,4 +85,26 @@ public static class MapsuiUtils
             return null;
         }
     }
+
+    public static ZoomInOutWidget CreateZoomInOutWidget(Orientation orientation, 
+                                                        VerticalAlignment verticalAlignment, 
+                                                        HorizontalAlignment horizontalAlignment, 
+                                                        float marginX = 20,
+                                                        float marginY = 20)
+    {
+        return new ZoomInOutWidget
+        {
+            Orientation = orientation,
+            VerticalAlignment = verticalAlignment,
+            HorizontalAlignment = horizontalAlignment,
+            MarginX = marginX,
+            MarginY = marginY
+        };
+    }
+    public static MRect GetMRect(double lon, double lat, double ratioInMeters)
+    {
+        var coordinate = SphericalMercator.FromLonLat(lon, lat).ToCoordinate();
+        return new MRect(coordinate.X - ratioInMeters, coordinate.Y - ratioInMeters, coordinate.X + ratioInMeters, coordinate.Y + ratioInMeters);
+    }
+
 }
