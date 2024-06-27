@@ -13,10 +13,4 @@ public partial class ZoomMapsuiView : UserControl
         DataContext = vm;
         mapControl.Map = ((ZoomMapsuiViewModel)DataContext).Map;
     }
-
-    protected override void OnLoaded(RoutedEventArgs e)
-    {
-        base.OnLoaded(e);
-        vm.LoadExample();
-    }
 }

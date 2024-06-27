@@ -7,9 +7,6 @@
 			 xmlns:vm ="clr-namespace:DemoMapsui.ViewModels;assembly=DemoMapsui"
 			 x:DataType="vm:LinesMapsuiViewModel"
              x:Class="DemoMapsui.Views.LinesMapsuiView">
-	<Grid RowDefinitions="auto, *">
-		<Button Content="Show Map" Margin="10"
-				Click="Button_Click"/>
-		<mapsui:MapControl x:Name="mapControl" Grid.Row="1"  />
-	</Grid>
+		<mapsui:MapControl x:Name="mapControl" 
+						   Grid.Row="1"  />
 </UserControl>

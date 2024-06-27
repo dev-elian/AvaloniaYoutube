@@ -3,6 +3,7 @@ using Mapsui.Styles;
 using Mapsui;
 using NetTopologySuite.Geometries;
 using System.Collections.Generic;
+using CommunityToolkit.Mvvm.Input;
 
 namespace DemoMapsui.ViewModels;
 
@@ -10,14 +11,10 @@ public partial class LinesMapsuiViewModel:BaseMapViewModel
 {
     public LinesMapsuiViewModel()
     {
-    }
-
-    public override void LoadExample()
-    {
-        base.LoadExample();
         LoadLines();
     }
 
+    [RelayCommand]
     void LoadLines()
     {
         Map.Layers.Clear();

@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DemoMapsui.ViewModels;
+using System.Diagnostics;
 
 namespace DemoMapsui.Views;
 
@@ -12,10 +13,5 @@ public partial class LinesMapsuiView : UserControl
         InitializeComponent();
         DataContext = vm;
         mapControl.Map = ((LinesMapsuiViewModel)DataContext).Map;
-    }
-
-    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        vm.LoadExample();
     }
 }

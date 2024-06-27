@@ -12,10 +12,6 @@ public partial class ZoomMapsuiViewModel : BaseMapViewModel
 {
     public ZoomMapsuiViewModel(){
         Map.Info += OnChangeMapInfo;
-    }
-    public override void LoadExample()
-    {
-        base.LoadExample();
         LoadZoomExample();
     }
     void LoadZoomExample()
@@ -24,9 +20,9 @@ public partial class ZoomMapsuiViewModel : BaseMapViewModel
         Map.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
         Map.Widgets.Enqueue(new ZoomInOutWidget
         {
-            Orientation = Orientation.Vertical,
-            VerticalAlignment = Mapsui.Widgets.VerticalAlignment.Top,
-            HorizontalAlignment = Mapsui.Widgets.HorizontalAlignment.Right,
+            Orientation = Orientation.Horizontal,
+            VerticalAlignment = Mapsui.Widgets.VerticalAlignment.Bottom,
+            HorizontalAlignment = Mapsui.Widgets.HorizontalAlignment.Left,
             MarginX = 20,
             MarginY = 20,
         });
@@ -81,7 +77,7 @@ public partial class ZoomMapsuiViewModel : BaseMapViewModel
     [RelayCommand]
     void ZoomIn()
     {
-        Map.Navigator.ZoomIn(500, Easing.CubicOut);
+        Map.Navigator.ZoomIn(500, Easing.Linear);
     }
 
     [RelayCommand]

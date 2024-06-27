@@ -7,8 +7,4 @@ public partial class BaseMapViewModel:ViewModelBase
 {
     [ObservableProperty]
     Map _map = new();
-
-    public virtual void LoadExample()
-    {
-    }
 }
